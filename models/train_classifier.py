@@ -99,13 +99,13 @@ def build_model():
         [
             ("vect", CountVectorizer(tokenizer=tokenize)),
             ("tfidf", TfidfTransformer()),
-            ("clf", MultiOutputClassifier(estimator=RandomForestClassifier())),
+            ("clf", MultiOutputClassifier(estimator=AdaBoostClassifier())),
         ]
     )
 
     parameters = {
         "tfidf__use_idf": (True, False),
-        "clf__estimator__n_estimators": [50, 100],
+        # "clf__estimator__n_estimators": [50, 100],
     }
 
     model = GridSearchCV(pipeline, param_grid=parameters)
